@@ -1,26 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import LogIn from "./components/Layout/LogIn";
+import SignUp from "./components/Layout/SignUp";
+import Navbar from "./components/Layout/Navbar";
+import Home from "./components/Containers/Home";
+import User from "./components/Containers/Users";
+import Exercises from "./components/Exercises/Exercises";
+import Chest from "./components/Exercises/Chest";
+import Back from "./components/Exercises/Back";
+import Legs from "./components/Exercises/Legs";
+import Shoulders from "./components/Exercises/Shoulders";
+import Trainers from "./components/Containers/Trainers";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/logIn" component={LogIn} />
+          <Route path="/SignUp" component={SignUp} />
+          <Route path="/user/:uid" component={User} />
+          <Route exact path="/:id/exercises" component={Exercises} />
+          <Route path="/exercises/chest" component={Chest} />
+          <Route path="/exercises/back" component={Back} />
+          <Route path="/exercises/legs" component={Legs} />
+          <Route path="/exercises/shoulders" component={Shoulders} />
+          <Route path="/trainers" component={User} />
+          <Route path="/trainer/:uid" component={Trainers} />
+        </Switch>
+      </Router>
     );
   }
 }
